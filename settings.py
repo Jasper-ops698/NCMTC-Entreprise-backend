@@ -1,6 +1,9 @@
 import os
 from dotenv import load_dotenv  # Import dotenv to load environment variables
 
+# Ensure BASE_DIR is defined
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 load_dotenv()  # Load environment variables from .env file
 
 DATABASES = {
@@ -14,14 +17,14 @@ DATABASES = {
     }
 }
 
-# Ensure SECRET_KEY is loaded from the environment
-SECRET_KEY = os.getenv('SECRET_KEY')  # Do not use a default value in production
+# Ensure SECRET_KEY is loaded from the environment with a fallback for development
+SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')  # Replace fallback in production
 
 # Debug mode should be disabled in production
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
-# Configure allowed hosts for production
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+# Configure allowed hosts for production with a fallback
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
 # Static files settings
 STATIC_URL = '/static/'
