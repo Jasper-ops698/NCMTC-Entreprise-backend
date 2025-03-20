@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Tokens</title>
+</head>
+<body>
+    <h1>Verification Tokens</h1>
+    <form method="POST">
+        <input type="text" name="token" placeholder="Enter token" required>
+        <button type="submit">Add Token</button>
+    </form>
+    <ul>
+        {% for token in tokens %}
+            <li>{{ token.token }} - {{ token.user.email }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
